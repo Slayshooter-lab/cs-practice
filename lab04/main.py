@@ -4,6 +4,7 @@ from stats import read_valid, average_by_city, warmest_city
 
 def main():
     lines = sys.stdin.read().splitlines()
+    lines = [line for line in lines if line.strip()]
     records = read_valid(lines)
 
     print(len(records))
