@@ -1,13 +1,13 @@
 def count_by_extension(paths: list) -> dict:
-    """Считает количество файлов для каждого расширения (в нижнем регистре, без точки)."""
     counts = {}
     for path in paths:
-        # Берем имя файла (на случай, если в пути есть папки)
         filename = path.split("/")[-1]
 
-        # Если в имени есть точка, берем то, что после последней
         if "." in filename:
-            ext = filename.split(".")[-1].lower()
+            parts = filename.rsplit(".", 1)
+            ext = parts[-1].lower()
+            if not parts[0]:
+                ext = filename.lower().lstrip(".")
         else:
             ext = ""  # Если точки нет (например, Makefile)
 
