@@ -10,7 +10,7 @@ def parse_event(line: str) -> dict:
     return {"time": time, "level": level, "message": message.strip()}
 
 def count_levels(lines) -> dict:
-    counts = {}
+    counts = {} 
     for line in lines:
         try:
             event = parse_event(line)
