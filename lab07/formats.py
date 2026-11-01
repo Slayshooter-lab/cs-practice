@@ -79,3 +79,4 @@ def merge_by_key(rows: list[dict], extra: dict, key: str = "id") -> list[dict]:
 def records_to_json(records: list[dict]) -> str:
     """Преобразует список словарей в красивый JSON-строку."""
     return json.dumps(records, indent=2, ensure_ascii=False, sort_keys=True)
+
