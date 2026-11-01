@@ -27,21 +27,15 @@ def deepest_path(paths: list) -> str:
 
 
 def human_size(n_bytes: int) -> str:
-    """Переводит размер в байтах в удобный формат (Б, КБ, МБ, ГБ, ТБ)."""
     if n_bytes < 1024:
         return f"{n_bytes} Б"
 
     units = ["КБ", "МБ", "ГБ", "ТБ"]
-    size = n_bytes
+    size = float(n_bytes)
 
     for unit in units:
         size /= 1024.0
         if size < 1024:
-            if size.is_integer():
-                return f"{int(size)} {unit}"
-            else:
-                return f"{size:.1f} {unit}"
+            return f"{size:.1f} {unit}"
 
-    # Если больше ТБ (на всякий случай)
     return f"{size:.1f} ПБ"
-
