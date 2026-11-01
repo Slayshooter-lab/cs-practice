@@ -44,3 +44,4 @@ def human_size(n_bytes: int) -> str:
 
     # Если больше ТБ (на всякий случай)
     return f"{size:.1f} ПБ"
+
