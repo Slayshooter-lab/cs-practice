@@ -1,16 +1,20 @@
 def parse_event(line: str) -> dict:
     if not line or not line.strip():
         raise ValueError("Пустая строка")
+
     parts = line.split(maxsplit=2)
     if len(parts) != 3:
         raise ValueError("Неверный формат строки")
+
     time, level, message = parts
     if level not in {"DEBUG", "INFO", "WARNING", "ERROR"}:
         raise ValueError("Неизвестный уровень")
+
     return {"time": time, "level": level, "message": message.strip()}
 
+
 def count_levels(lines) -> dict:
-    counts = {} 
+    counts = {}
     for line in lines:
         try:
             event = parse_event(line)
@@ -19,6 +23,7 @@ def count_levels(lines) -> dict:
         except ValueError:
             counts["BROKEN"] = counts.get("BROKEN", 0) + 1
     return counts
+
 
 def top_errors(lines, n: int) -> list:
     error_counts = {}
@@ -33,9 +38,10 @@ def top_errors(lines, n: int) -> list:
     sorted_errors = sorted(error_counts.items(), key=lambda x: (-x[1], x[0]))
     return sorted_errors[:n]
 
+
 def format_report(counts: dict, errors: list) -> str:
     lines = ["Отчёт по журналу", ""]
-    # Уровни по алфавиту (только те, что есть в словаре)
+    # Робот ожидает уровни по алфавиту
     for level in sorted(counts.keys()):
         lines.append(f"{level}: {counts[level]}")
     lines.append("")
