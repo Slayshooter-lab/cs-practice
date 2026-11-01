@@ -35,9 +35,10 @@ def parse_settings(lines: list[str]) -> dict:
         if low_val in ("false", "no"):
             return False
         try:
-            if "." in val:
-                return float(val)
-            return int(val)
+            num_val = val.replace(",", ".")
+            if "." in num_val:
+                return float(num_val)
+            return int(num_val)
         except ValueError:
             return val
 
